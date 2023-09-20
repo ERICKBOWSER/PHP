@@ -10,3 +10,61 @@ Iniciar servicios:
 Parar servicios:
 
 ``sudo /opt/lampp/lampp stop``
+
+
+## Importante
+
+Para que salga el mensaje de error en la web.
+
+Código: `sudo nano /opt/lampp/etc/php.ini`
+
+![image](https://github.com/ERICKBOWSER/PHP/assets/92431188/8295e501-106c-42f3-a97e-2b595d25480d)
+
+Hay que colocar el display_errors en On
+
+![image](https://github.com/ERICKBOWSER/PHP/assets/92431188/1e10d0ed-fe23-40fb-a047-04a3c381c298)
+
+
+Cuando dentro solo hay 1 sentencia no hace falta colocar llaves en el else.
+
+
+
+
+![image](https://github.com/ERICKBOWSER/PHP/assets/92431188/35f09fc0-3e8e-4b79-baab-49ac356b0b04)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
