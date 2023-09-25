@@ -1,4 +1,15 @@
 <?php
+    // Boton de borrar
+    if(isset($_POST["btnBorrar"])){
+        // destruye el post
+        unset($_POST);
+
+        // 2da forma 
+        // header("Location: index.php");
+        // exit; // para que no haga nada más
+
+    }
+
     // Compruebo errores
     if(isset($_POST["submit"])){
         $error_nombre = $_POST["nombre"] == "";
