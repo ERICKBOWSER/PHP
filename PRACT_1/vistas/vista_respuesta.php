@@ -77,7 +77,7 @@
             </br></br>
 
             <input type="submit" value="Guardar Cambios" id="submit" name="submit"/>
-            <input type="reset" value="Borrar Cambios"/>
+            <input type="submit" value="Borrar Cambios" name="btnBorrar"/>
 
         </form>
     </body>
