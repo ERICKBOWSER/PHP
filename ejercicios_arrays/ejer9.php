@@ -12,9 +12,9 @@
 
 
 
-        $lenguajes = $lenguajes_cliente + $lenguajes_servidor;
+        $lenguajes = $lenguajes_cliente
 
-        echo $lenguajes;
+        
 
     ?>
     

@@ -37,6 +37,7 @@
         $str3 = implode(":::", $arr_prueba); // Crea un string juntando todos los elementos
         echo "<p>" . $str3 . "</p>";
 
+        // Se usa para mostrar un número determinado de datos 
         echo "<p>" .substr("Hola que tal, Juan", 0, 8) . "</p>" // Normalmente tiene 3 valores
 
     ?>
