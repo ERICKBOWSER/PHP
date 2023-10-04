@@ -1,4 +1,25 @@
 <?php
+
+    function letraNIF($dni){
+        return substr("TRWAGMYFPDXBNJZSQVHLCKEO", $dni % 23, 1);
+    }
+
+    function dniBienEscrito($texto){
+        return strlen($texto) == 9 && is_numeric(substr($texto, 0, 8)) && 
+            substr($texto, -1) >= "A" && substr($texto, -1) <= "Z";
+    }
+
+    function dniValido($texto){
+        $numero = substr($texto, 0, 8);
+        $letra = substr($texto, -1);
+        $valido = letraNIF($numero) == $letra;
+
+        return $valido;
+    }
+
+
+
+
     // Boton de borrar
     if(isset($_POST["btnBorrar"])){
         // destruye el post
@@ -15,6 +36,10 @@
         $error_nombre = $_POST["nombre"] == "";
         $error_ape = $_POST["ape"] == "";
         $error_clave = $_POST["pass"] == "";
+
+        $error_dni = $_POST["dni"] == "" || !dniBienEscrito(strtoupper($_POST["dni"])) || 
+                !dniValido(strtoupper($_POST["dni"]));
+
         $error_sexo = !isset($_POST["sexo"]) == "";
         $error_comentarios = $_POST["comentario"];
 

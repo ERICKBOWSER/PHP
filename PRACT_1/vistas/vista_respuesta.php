@@ -39,6 +39,24 @@
             ?>
             <br/></br>
 
+            <label for="dni">DNI:</label><br/>
+            <input type="text" placeholder="DNI: 123412341" name = "dni" id = "dni" value="<?php if(isset($_POST["dni"])) echo $_POST["dni"];?>"/>
+            <?php
+                if(isset($_POST["submit"]) && $error_dni){ // Hay que preguntar siempre si se ha hecho el submit
+                    if($_POST["dni"] == ""){
+                        echo "<span class='error'> Campo vacío </span>";
+                    }elseif(!dniBienEscrito(strtoupper($_POST["dni"]))){
+                        echo "<span class='error'> DNI no está bien escrito </span>";
+                    }else{
+                        echo "<span class='error'>El DNI no es valido.</span>";
+                    }
+                }
+
+                
+
+            ?>
+            <br/><br/>
+
             <label for="sexo">Sexo</label>
             <?php
                 if(isset($_POST["submit"]) && $error_sexo){ // Hay que preguntar siempre si se ha hecho el submit

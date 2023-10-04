@@ -15,6 +15,8 @@
         echo "<p><strong>Apellidos: </strong>" . $_POST["ape"] . "</p>";
 
         echo "<p><strong>Contraseña: </strong>" . $_POST["pass"] . "</p>";
+
+        echo "<p><strong>DNI: </strong>" . $_POST["dni"] . "</p>";
         
         if(isset($_POST["sexo"])){
             echo "<p><strong>Sexo: </strong>" . $_POST["sexo"] . "</p>";
