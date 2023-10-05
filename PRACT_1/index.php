@@ -1,5 +1,6 @@
 <?php
 
+    // Detectar la letra del dni
     function letraNIF($dni){
         return substr("TRWAGMYFPDXBNJZSQVHLCKEO", $dni % 23, 1);
     }
@@ -17,7 +18,21 @@
         return $valido;
     }
 
+    // Guardar imagen
 
+    if(isset($_POST["submit"])){
+        // Comprueba si hay algún error en la imagen
+        $errorArchivo = $_FILES["archivo"]["name"] == ""
+            || $_FILES["archivo"]["error"]
+            || !getimagesize($_FILES["archivo"]["tmp_name"])
+            || $_FILES["archivo"]["size"] > 500 * 1024;
+    }
+
+    // Si no hay fallos...
+    // se puede añadir el error form también
+    if(isset($_POST["submit"]) && !$errorArchivo){
+
+    }
 
 
     // Boton de borrar
