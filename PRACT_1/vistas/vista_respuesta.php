@@ -69,8 +69,30 @@
             <label>Mujer</label>
             </br></br>
 
-            <label>Incluir mi foto:</label>
-            <input type="file" id="img" accept="jpg"/>
+            <label for="archivo">Incluir mi foto:</label>
+            <input type="file" id="archivo" id="archivo" accept="image/"/>
+            <?php
+                if(isset($_POST["submit"]) && $errorArchivo){
+                    if($_FILES["archivo"]["name"]!=""){ 
+
+                        if($_FILES["archivo"]["error"]){ 
+                            echo "<span class='error'>No se ha podido subir el archivo</<span>";
+
+                        // Si no es una imagen
+                        }elseif(!getimagesize($_FILES["archivo"]["tmp_name"])){ 
+                            echo "<span class='error'>No has seleccionado un archivo de tipo imagen</<span>";
+
+                        }else{
+                            echo "<span class='error'>El archivo seleccionado supera los 500KB</<span>";
+
+                        }
+                    }
+
+
+                }
+
+            ?>
+
             </br></br>
 
             <label>Nacido en:</label>

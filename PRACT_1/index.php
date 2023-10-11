@@ -1,5 +1,7 @@
 <?php
 
+    require "vistas/vista_formulario.php";
+
     // Detectar la letra del dni
     function letraNIF($dni){
         return substr("TRWAGMYFPDXBNJZSQVHLCKEO", $dni % 23, 1);
@@ -28,13 +30,6 @@
             || $_FILES["archivo"]["size"] > 500 * 1024;
     }
 
-    // Si no hay fallos...
-    // se puede añadir el error form también
-    if(isset($_POST["submit"]) && !$errorArchivo){
-
-    }
-
-
     // Boton de borrar
     if(isset($_POST["btnBorrar"])){
         // destruye el post
@@ -58,6 +53,9 @@
         $error_sexo = !isset($_POST["sexo"]) == "";
         $error_comentarios = $_POST["comentario"];
 
+        // Archivos
+        $errorArchivo = $_FILES["archivo"]["name"] != "" && ($_FILES["archivo"]["error"] || !getimagesize($_FILES["archivo"]["tmp_name"]) || $_FILES["archivo"]["size"] > 500 * 1024);
+
         $error_form = $error_nombre || $error_ape || 
         $error_clave || $error_sexo || $error_comentarios;
 
@@ -65,15 +63,8 @@
     if(isset($_POST["submit"]) && !$error_form){
 
         require "vistas/vista_formulario.php";
-?>
-    
-
-<?php
     }else{
         require "vistas/vista_respuesta.php";
-?>
-
-<?php
     }
 
 
