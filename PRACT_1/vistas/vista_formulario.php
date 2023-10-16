@@ -1,77 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recogida de datos</title>
-</head>
-<body>
-    <h1>Recogiendo los datos</h1>
-    <?php
-        if(isset($_POST["submit"])){
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <style>
+                .error{color:red}
+            </style>
+        </head>
+        <body>
+            <form action="index.php" method="post" enctype="multipart/form-data">
+            <h1>Rellena tu CV</h1>
 
-        echo "<p><strong>Nombre: </strong>" . $_POST["nombre"] . "</p>";
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" value="<?php if(isset($_POST["nombre"])) echo $_POST["nombre"];?>"/> 
+            <?php
+                if(isset($_POST["submit"]) && $error_nombre){ // Hay que preguntar siempre si se ha hecho el submit
+                    echo "<span class='error'> Campo vacío </span>";
+                }
+            ?>
+            <br/></br>
 
-        echo "<p><strong>Apellidos: </strong>" . $_POST["ape"] . "</p>";
+            <label for="ape">Apellidos</label>
+            <input type="text" id="ape" name="ape" value="<?php if(isset($_POST["ape"])) echo $_POST["ape"];?>"/>
+            <?php
+                if(isset($_POST["submit"]) && $error_ape){ // Hay que preguntar siempre si se ha hecho el submit
+                    echo "<span class='error'> Campo vacío </span>";
+                }
+            ?>
+            <br/></br>
 
-        echo "<p><strong>Contraseña: </strong>" . $_POST["pass"] . "</p>";
+            <label for="pass">Contraseña</label>
+            <input type="password" id="pass" name="pass"/>
+            <?php
+                if(isset($_POST["submit"]) && $error_clave){ // Hay que preguntar siempre si se ha hecho el submit
+                    echo "<span class='error'> Campo vacío </span>";
+                }
+            ?>
+            <br/></br>
 
-        echo "<p><strong>DNI: </strong>" . $_POST["dni"] . "</p>";
-        
-        if(isset($_POST["sexo"])){
-            echo "<p><strong>Sexo: </strong>" . $_POST["sexo"] . "</p>";
-        }else
-            echo "<p><strong>Sexo: </strong>no esta definido</p>";
+            <label for="dni">DNI:</label><br/>
+            <input type="text" placeholder="DNI: 123412341" name = "dni" id = "dni" value="<?php if(isset($_POST["dni"])) echo $_POST["dni"];?>"/>
+            <?php
+                if(isset($_POST["submit"]) && $error_dni){ // Hay que preguntar siempre si se ha hecho el submit
+                    if($_POST["dni"] == ""){
+                        echo "<span class='error'> Campo vacío </span>";
+                    }elseif(!dniBienEscrito(strtoupper($_POST["dni"]))){
+                        echo "<span class='error'> DNI no está bien escrito </span>";
+                    }else{
+                        echo "<span class='error'>El DNI no es valido.</span>";
+                    }
+                }
 
-        echo "<p><strong>Nacido en: </strong>" . $_POST["nacido"] . "</p>";
-
-        echo "<p><strong>Comentario: </strong>" . $_POST["comentario"] . "</p>";
-
-        if (isset($_POST["suscribe"])){
-            echo "<p><strong>Suscribirse: </strong> suscrito</p>";
-        }else
-            echo "<p><strong>Suscribirse: </strong>no esta suscrito</p>";
-
-        }else{
-            header("Location: index.php");
-        }
-
-        // Imagenes
-        if($_FILES["archivo"]["name"]!=""){
-
-            $ext="";
-
-            $array_nombre=explode(".",$_FILES["archivo"]["name"]);
-
-            if(count($array_nombre)>1){
-                $ext=".".end($array_nombre);
-
-            }
-
-            $nombre_nuevo=md5(uniqid(uniqid(),true)).$ext;
-
-            @$var=move_uploaded_file($_FILES["archivo"]["tmp_name"],"images/".$nombre_nuevo);
-
-            if($var){ 
-    
-                echo "<h3>Informacion de la foto</h3>";
-                echo "<p><strong>Nombre: </strong>".$_FILES["archivo"]["name"]."</p>";
-                echo "<p><strong>Tipo: </strong>".$_FILES["archivo"]["type"]."</p>";
-                echo "<p><strong>Tamaño: </strong>".$_FILES["archivo"]["size"]."</p>";
-                echo "<p><strong>Error: </strong>".$_FILES["archivo"]["error"]."</p>";
-                echo "<p><strong>Archivo en el temporal del servidor: </strong>".$_FILES["archivo"]["tmp_name"]."</p>";
-                echo "<p><img class='tam_imag' src='images/".$nombre_nuevo."' alt='Foto' title='Foto' /></p>";
-        
-            }else{
                 
-                echo "<p><strong>Foto:</strong>No se ha podido mover la imagen seleccionada a la carpeta de destino</p>";
-            }
-        }else{
-    
-            echo "<p><strong>Foto: </strong>Imagen no seleccionada</p>";
-        }
 
-    ?>
-</body>
-</html>
+            ?>
+            <br/><br/>
 
+            <label for="sexo">Sexo</label>
+            
+            <input type="radio" id="hombre" name="sexo" value="hombre" <?php if(isset($_POST["sexo"]) && $_POST["sexo"] == "hombre") echo "checked";?>/>
+            <label>Hombre</label>
+            <input type="radio" id="mujer" name="sexo" value="mujer" <?php if(isset($_POST["sexo"]) && $_POST["sexo"] == "mujer") echo "checked"; ?>/>
+            <label>Mujer</label>
+            <?php
+                if(isset($_POST["submit"]) && $error_sexo){ // Hay que preguntar siempre si se ha hecho el submit
+                    echo "<span class='error'>Debes seleccionar un sexo</span>";
+                }
+            ?>
+            </br></br>
+
+            <label for="archivo">Incluir mi foto:</label>
+            <input type="file" id="archivo" id="archivo" accept="image/"/>
+            <?php
+                if(isset($_POST["submit"]) && $errorArchivo){
+                    if($_FILES["archivo"]["name"]!=""){ 
+
+                        if($_FILES["archivo"]["error"]){ 
+                            echo "<span class='error'>No se ha podido subir el archivo</<span>";
+
+                        // Si no es una imagen
+                        }elseif(!getimagesize($_FILES["archivo"]["tmp_name"])){ 
+                            echo "<span class='error'>No has seleccionado un archivo de tipo imagen</<span>";
+
+                        }else{
+                            echo "<span class='error'>El archivo seleccionado supera los 500KB</<span>";
+
+                        }
+                    }
+
+
+                }
+
+            ?>
+
+            </br></br>
+
+            <label>Nacido en:</label>
+            <select name="nacido" id = "nacido">
+                <option value="malaga" <?php if(!isset($_POST["nacido"]) || (isset($_POST["nacido"]) && $_POST["nacido"]=="malaga")) echo "selected";?>>Malaga</option>
+                <option value="madrid" <?php if(!isset($_POST["nacido"]) || (isset($_POST["nacido"]) && $_POST["nacido"]=="madrid")) echo "selected";?>>Madrid</option>
+            </select></br></br>
+
+            <label>comentarios</label>
+            <textarea id="comentario" name="comentario">
+                <?php if(isset($_POST["comentario"])) echo $_POST["comentario"];?>
+            </textarea>
+            <?php
+                if(isset($_POST["submit"]) && $error_comentarios){ // Hay que preguntar siempre si se ha hecho el submit
+                    echo "<span class='error'> Campo vacío </span>";
+                }
+            ?>
+            </br></br>      
+
+            <input type="checkbox" id="suscribe"/>
+            <label for="suscribe">Suscribirse al boletín de Novedades</label>
+            </br></br>
+
+            <input type="submit" value="Guardar Cambios" id="submit" name="submit"/>
+            <input type="submit" value="Borrar Cambios" name="btnBorrar"/>
+
+        </form>
+    </body>
+    </html>

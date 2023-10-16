@@ -1,6 +1,6 @@
 <?php
 
-    require "vistas/vista_formulario.php";
+    //require "vistas/vista_formulario.php";
 
     // Detectar la letra del dni
     function letraNIF($dni){
@@ -21,14 +21,14 @@
     }
 
     // Guardar imagen
-
+/*
     if(isset($_POST["submit"])){
         // Comprueba si hay algún error en la imagen
         $errorArchivo = $_FILES["archivo"]["name"] == ""
             || $_FILES["archivo"]["error"]
             || !getimagesize($_FILES["archivo"]["tmp_name"])
             || $_FILES["archivo"]["size"] > 500 * 1024;
-    }
+    }*/
 
     // Boton de borrar
     if(isset($_POST["btnBorrar"])){
@@ -50,11 +50,11 @@
         $error_dni = $_POST["dni"] == "" || !dniBienEscrito(strtoupper($_POST["dni"])) || 
                 !dniValido(strtoupper($_POST["dni"]));
 
-        $error_sexo = !isset($_POST["sexo"]) == "";
+        $error_sexo = !isset($_POST["sexo"]); // !isset para comprobar si se ha marcado algo
         $error_comentarios = $_POST["comentario"];
 
         // Archivos
-        $errorArchivo = $_FILES["archivo"]["name"] != "" && ($_FILES["archivo"]["error"] || !getimagesize($_FILES["archivo"]["tmp_name"]) || $_FILES["archivo"]["size"] > 500 * 1024);
+        $errorArchivo=$_FILES["archivo"]["name"]=="" && $_FILES["archivo"]["error"] || !getimagesize($_FILES["archivo"]["tmp_name"]) || $_FILES["archivo"]["size"] > 500*1024; 
 
         $error_form = $error_nombre || $error_ape || 
         $error_clave || $error_sexo || $error_comentarios;
@@ -62,11 +62,12 @@
     }
     if(isset($_POST["submit"]) && !$error_form){
 
-        require "vistas/vista_formulario.php";
-    }else{
         require "vistas/vista_respuesta.php";
+    }else{
+        require "vistas/vista_formulario.php";
     }
 
 
 ?>
+
 
