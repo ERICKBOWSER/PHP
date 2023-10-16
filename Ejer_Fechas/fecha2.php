@@ -3,7 +3,21 @@
         $errorFecha1 = !checkdate($_POST["mes1"], $_POST["dia1"], $_POST["anyo1"]);
         $errorFecha2 = !checkdate($_POST["mes2"], $_POST["dia2"], $_POST["anyo2"]);
 
+        $errorForm = $errorFecha1 || $errorFecha2;
     }
+
+    $mes[1]="Enero";
+    $mes[2]="Febrero";
+    $mes[3]="Marzo";
+    $mes[4]="Abril";
+    $mes[5]="Mayo";
+    $mes[6]="Junio";
+    $mes[7]="Julio";
+    $mes[8]="Agosto";
+    $mes[9]="Septiembre";
+    $mes[10]="Octubre";
+    $mes[11]="Noviembre";
+    $mes[12]="Diciembre";
 
 ?>
 
@@ -12,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>fechas</title>
     <style>
         .cuadro{border:solid; padding:5px}
         .fondoCeleste{background-color: lightblue}
@@ -47,14 +61,13 @@
             <label for="mes1">Mes: </label>
             <select name="mes1" id="mes1">
                 <?php
-                    $mes = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
-                    for ($i=0; $i < count($mes); $i++) { 
+                    for ($i=1; $i < count($mes); $i++) { 
                         # code...
                         if(isset($_POST["btnCalcular"]) && $_POST["mes1"] == $i){
-                            echo "<option selected value='" . $mes[$i] . "'>" . $mes[$i] . "</option>";
+                            echo "<option selected value='" . $i . "'>" . $mes[$i] . "</option>";
                         }else{
-                            echo "<option value='" . $mes[$i] . "'>" . $mes[$i] . "</option>";
+                            echo "<option value='" . $i . "'>" . $mes[$i] . "</option>";
                         }
                     }
 
@@ -87,11 +100,7 @@
         
             <?php
                 if(isset($_POST["btnCalcular"]) && $errorFecha1){
-                    if($_POST["texto1"] == ""){
-                        echo "<span class='error'>Campo vacío</span";
-                    }else{
-                        echo "<span class='error'>Fecha no valida</span";
-                    }
+                    echo "<span class='error'>Fecha no valida</span";                    
                 }
 
                 if(isset($_POST["btnCalcular"]) && $errorFecha1){
@@ -119,14 +128,13 @@
     <label for="mes2">Mes: </label>
     <select name="mes2" id="mes2">
         <?php
-            $mes = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
-            for ($i=0; $i < count($mes); $i++) { 
+            for ($i=1; $i < count($mes); $i++) { 
                 # code...
                 if(isset($_POST["btnCalcular"]) && $_POST["mes2"] == $i){
-                    echo "<option selected value='" . $mes[$i] . "'>" . $mes[$i] . "</option>";
+                    echo "<option selected value='" . $i . "'>" . $mes[$i] . "</option>";
                 }else{
-                    echo "<option value='" . $mes[$i] . "'>" . $mes[$i] . "</option>";
+                    echo "<option value='" . $i . "'>" . $mes[$i] . "</option>";
                 }
             }
 
@@ -157,10 +165,8 @@
 
 
     <?php
-        if(isset($_POST["btnCalcular"]) && $errorFecha2){
-            if($_POST["texto1"] == ""){                
+        if(isset($_POST["btnCalcular"]) && $errorFecha2){             
                 echo "<span class='error'>Fecha no valida</span";
-            }
         }
     ?>
     </p>
@@ -178,8 +184,8 @@
             $diasPasados = $difSegundos / (60 * 60 * 24);
 
             echo "<div class = 'cuadro fondo_verdoso'>";
-            echo "<h1 class='centro'>Fechas - Respuestas</h1>";
-            echo "<p>La diferencia en días entre las dos fechas introducidas es de: " . floor($diasPasados) . "</p>";
+                echo "<h1 class='centro'>Fechas - Respuestas</h1>";
+                echo "<p>La diferencia en días entre las dos fechas introducidas es de: " . floor($diasPasados) . "</p>";
             echo "</div>";
         }
     ?>
