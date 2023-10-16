@@ -158,9 +158,7 @@
 
     <?php
         if(isset($_POST["btnCalcular"]) && $errorFecha2){
-            if($_POST["texto1"] == ""){
-                echo "<span class='error'>Campo vacío</span";
-            }else{
+            if($_POST["texto1"] == ""){                
                 echo "<span class='error'>Fecha no valida</span";
             }
         }
