@@ -62,7 +62,9 @@
         // PHP_EOL que es de End Of Lane
         fwrite($fd1, PHP_EOL . "No me vas a dejar escribir");
 
-
+        // Coge todas las lineas del fichero
+        $todoFichero = file_get_contents("prueba.txt"); // También sirve para URL
+        echo nl2br($todoFichero); //    Añade br a los saltos de linea
 
 
 
