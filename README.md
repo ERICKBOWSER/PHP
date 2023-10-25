@@ -52,7 +52,8 @@ Si no hay !getimagesize() devuelve 0
 Por politica no se guardan las fotos, así que si se recarga la página no se guardan los datos.
 
 ---
-
+ord("A");
+chr(a)
 
 
 
