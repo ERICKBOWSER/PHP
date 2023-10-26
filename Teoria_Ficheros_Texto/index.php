@@ -54,16 +54,17 @@
 
         while ($linea = fgets($fd1)) { // mientras la asignación tenga exito se ejecuta
             # code...
-            echo "<p>" . $linea . "</p>";
+            echo "<p>" . $linea . " -_- </p>";
         }
 
         // ESCRIBIR
 
         // PHP_EOL que es de End Of Lane
-        fwrite($fd1, PHP_EOL . "No me vas a dejar escribir");
+        fwrite($fd1, PHP_EOL . "prueba de que se escribe");
 
         // Coge todas las lineas del fichero
         $todoFichero = file_get_contents("prueba.txt"); // También sirve para URL
+        echo "Todo el contenido<br/>";
         echo nl2br($todoFichero); //    Añade br a los saltos de linea
 
 

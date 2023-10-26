@@ -34,7 +34,7 @@
         $arr_prueba = array("hola", "Juan", "Antonio", 12, "Maria");
         print_r($arr_prueba);
 
-        $str3 = implode(":::", $arr_prueba); // Crea un string juntando todos los elementos
+        $str3 = implode(":", $arr_prueba); // Crea un string juntando todos los elementos
         echo "<p>" . $str3 . "</p>";
 
         // Se usa para mostrar un número determinado de datos 
