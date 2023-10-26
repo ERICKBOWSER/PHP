@@ -13,7 +13,7 @@
         //  Muestra la hora
         echo "<p>" . date("d/m/Y h:i:s", 2000) ."</p>"; //  i para minutos
 
-        if(checkdate(2, 28, 2023)){
+        if(checkdate(2, 28, 2023)){ // Comprobar si es una fecha valida
             echo "<p>Fecha buena</p>";
         }else{
             echo "<p>Fecha Mala</p>";
@@ -24,20 +24,20 @@
         
         echo "<p>" . strtotime("09/23/1976") . "</p>";
 
-        echo "<p>" . floor(6.5) . "</p>";
+        echo "<p>" . floor(6.5) . "</p>"; // Redondea hacía abajo
 
-        echo "<p>" . ceil(6.5) . "</p>";
+        echo "<p>" . ceil(6.5) . "</p>"; // Redondea hacía arriba
 
         printf("<p>%.2f</p>", 5.6666*7.8888);
 
         $resultado = printf("<p>%.2f</p>", 5.6666*7.8888); // No lo muestra, guarda el string de eso
 
-        echo $resultado;
+        //echo $resultado;
 
         for ($i=0; $i <= 20; $i++) { 
             # code...
 
-            echo "<p>" . sprintf("%03d", $i) . "</p>"; //  Cadena de string
+            echo "<p>" . sprintf("%03d", $i) . "</p>"; //  Cadena de string de 3 
         }
 
 
