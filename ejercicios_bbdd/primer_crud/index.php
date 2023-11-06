@@ -22,7 +22,7 @@
 
         } catch(Exception $e){
             // NUNCA PUEDE IR UN mysqli_close() PORQUE NO SE HA HECHO NI LA CONEXIÓN DE LA BBDD
-            die("<p>No ha podido conectarse a la BBDD: " . $e->getMessage() . "</p>");
+            die("<p>No ha podido conectarse a la BBDD: " . $e->getMessage() . "</p></body></html>");
         }        
 
         try{
@@ -57,6 +57,9 @@
             echo "</form>";
 
         //}
+
+        // CUANDO SE HACE CONSULTAS MUY LARGAS SE COLOCA PARA LIBERAR CACHÉ
+        mysqli_free_result($resultado);
 
         // CERRAR CONEXIÓN
         mysqli_close($conexion);
