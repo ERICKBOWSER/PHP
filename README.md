@@ -56,7 +56,12 @@ ord("A");
 chr(a)
 
 
+##  Eliminar imagenes/links de la bbdd
 
+Código: ``unlink("ruta/nombre.tipo");``
+
+## ID de la última inserción de img
+Código: ``mysqli_insert_id($conexion)``
 
 
 
