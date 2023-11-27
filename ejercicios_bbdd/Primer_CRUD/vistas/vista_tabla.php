@@ -23,7 +23,7 @@ catch(Exception $e)
 
 echo "<table>";
 echo "<tr><th>Nombre de Usuario</th><th>Borrar</th><th>Editar</th></tr>";
-while($tupla=mysqli_fetch_assoc($resultado))
+while($tupla=mysqli_fetch_assoc($resultado) > 0)
 {
     echo "<tr>";
     echo "<td><form action='index.php' method='post'><button class='enlace' type='submit' value='".$tupla["id_usuario"]."' name='btnDetalle' title='Detalles del Usuario'>".$tupla["nombre"]."</button></form></td>";

@@ -123,6 +123,8 @@ if(isset($_POST["btnContEditar"]))
                     try{
                         $consulta="update usuarios set foto='".$nombre_foto."' where id_usuario='".$_POST["id_usuario"]."'";
                         mysqli_query($conexion,$consulta);
+                        //Borro la antigua que había con otra extensión
+                        unlink("Img/".$_POST["foto_bd"]);
                     }
                     catch(Exception $e)
                     {
@@ -133,8 +135,6 @@ if(isset($_POST["btnContEditar"]))
                         //die(error_page("Práctica 8","<h1>Práctica 8</h1><p>No se ha podido realizar la consulta: ".$e->getMessage()."</p>"));
                         $mensaje .= ", pero no se ha podido cambiar a la imagen seleccionada";
                     }
-                    //Borro la antigua que había con otra extensión
-                    unlink("Img/".$_POST["foto_bd"]);
                 }
             } else{
                 $mensaje .= ", pero no se ha podido cambiar a la imagen seleccionada";
