@@ -76,17 +76,24 @@ Código: ``mysqli_insert_id($conexion)``
         return $respuesta;
     }```
 
+## Servicios web
+
+htaccess, slim y la api para que funcione
+
+A donde llamo, porque metodo y que quiero consultar
 
 
+Devuelve un JSON con dos cosas
+
+![imagen](https://github.com/ERICKBOWSER/PHP/assets/92431188/09fa6d3d-c12a-45a7-b8fd-0e677cd126fe)
 
 
+Devuelve un JSON con un parametro
+
+Resultado: ``{'mensaje1': {`mensaje2`: 'saludo'}}
 
 
-
-
-
-
-
+![imagen](https://github.com/ERICKBOWSER/PHP/assets/92431188/873cc280-3b4c-4707-b83c-b1ce219b7bfa)
 
 
 
