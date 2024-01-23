@@ -26,14 +26,14 @@
         $datos["nombre"] = "producto a borrar";
         $datos["nombre_corto"] = "producto a BORRAR";
         $datos["descripcion"] = "Descripcioón a borrar";
-        $datos["PVP"] = 25.5;
+        $datos["PVP"] = 50;
         $datos["familia"] = "MP3";
 
-        $url = DIR_SERV . "/producto/insertar";
-        $respuesta = consumir_servicios_REST($url, "POST", $datos);
+        $url = DIR_SERV . "/producto/actualizar/" . urlencode("YYYYYYYY");
+        $respuesta = consumir_servicios_REST($url, "PUT", $datos);
         $obj = json_decode($respuesta);
         if(!$obj){
-            die("<p>Error consumiendo</p>");
+            die("<p>Error consumiendo el servicio: " . $url . "</p>" . $respuesta);
         }
         if(isset($obj -> mensaje_error)){
             die("<p>" . $obj -> mensaje_error . "</p></body></html>");
