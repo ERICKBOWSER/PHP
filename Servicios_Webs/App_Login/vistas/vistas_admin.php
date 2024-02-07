@@ -18,7 +18,7 @@
     <h1>App Login SW</h1>
     <div>
         <p>Bienvenido <strong><?php echo $datosUsuarioLog->usuario;?></strong> - <form class="enlinea" action = "index.php" method="post">
-            <button type="submit" name="btnSalir">Salir</button>
+            <button class="enlace" type="submit" name="btnSalir">Salir</button>
         </form>
         </p>
     </div>

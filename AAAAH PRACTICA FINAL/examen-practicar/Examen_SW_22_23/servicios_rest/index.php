@@ -28,9 +28,10 @@ $app->get('/logueado', function($request){
     session_id($token);
     session_start();
 
-    if(isset($_SESSION["usuario"]){
+    if(isset($_SESSION["usuario"])){
         echo json_encode(logueado($_SESSION["usuario"], $_SESSION["clave"]));
-    })else{
+    }else{
+        session_destroy();
         echo json_encode(array("no_auth" => "No tienes permisos para usar este servicio")); 
     }
 
@@ -52,7 +53,7 @@ $app->post('/crearLibro', function($request){
 
         echo json_encode(crear_libro($datos));
     }else{
-        echo json_encode(array("no_auth", => "No tienes permisos para usar este servicio"));
+        echo json_encode(array("no_auth" => "No tienes permisos para usar este servicio"));
     }
 
 });
@@ -81,7 +82,7 @@ $app->get('/repetido/{tabla}/{columna}({valor}', function($request){
     }else{
         echo json_encode(array("no_auth" => "No tienes permisos para usar este servicio"));
     }
-})
+});
 
 // Una vez creado servicios los pongo a disposición
 $app->run();
