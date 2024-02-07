@@ -12,9 +12,20 @@
 
 
 
-        $lenguajes = $lenguajes_cliente
+        $lenguajes = array_merge($lenguajes_cliente, $lenguajes_servidor);
 
-        
+        //print_r($lenguajes);
+
+        for ($i=0; $i < count($lenguajes_servidor); $i++) { 
+            # code...
+            array_push($lenguajes_cliente, $lenguajes_servidor[$i]);
+        }
+
+        foreach ($lenguajes_cliente as $indice => $valor) {
+            # code...
+
+            echo $valor;
+        }
 
     ?>
     
