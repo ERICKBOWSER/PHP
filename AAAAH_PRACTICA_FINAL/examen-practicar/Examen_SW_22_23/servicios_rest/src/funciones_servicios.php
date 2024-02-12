@@ -15,7 +15,7 @@ function login($lector, $clave){
         $sentencia = $conexion->prepare($consulta);// preparamos la consulta
         $sentencia->execute([$lector, $clave]); // Ejecutamos la consulta pasandole estos parametros
 
-    }catch(PDOException $){ // SI HAY ERROR ENVIAMOS UN MENSAJE DE ERROR Y PONEMOS LOS PARAMETROS EN NULL PARA BORRAR TODOS LOS DATOS PUESTOS ANTERIORMENTE
+    }catch(PDOException $e){ // SI HAY ERROR ENVIAMOS UN MENSAJE DE ERROR Y PONEMOS LOS PARAMETROS EN NULL PARA BORRAR TODOS LOS DATOS PUESTOS ANTERIORMENTE
         $respuesta["error"] = "Imposible realizar la consulta: " . $e->getMessage();
         $sentencia = null;
         $conexion = null;
@@ -70,7 +70,7 @@ function logueado($lector, $clave){
         return $respuesta;
     }
 
-    if($sentencia->rowCount(>0)){
+    if($sentencia->rowCount()>0){
         $respuesta["usuario"] = $sentencia->fetch(PDO::FETCH_ASSOC);
         // NO HACE FALTAR CREAR SESIONES PORQUE YA SE CREARON EN EL login()
     }else{
@@ -146,7 +146,7 @@ function repetido($tabla, $columna, $valor){
             array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES 'utf8'"));
 
     }catch(PDOException $e){
-        $respuesta["error"] = "Imposible conectar:" . $e-> get Message();
+        $respuesta["error"] = "Imposible conectar:" . $e-> getMessage();
         return $respuesta;
     }
 
