@@ -6,12 +6,12 @@ $respuesta = consumir_servicios_REST($url, "GET", $datos);
 $obj = json_decode(($respuesta));
 if(!$obj){
     session_destroy();
-    die(errorPage("Examen", "<h1>Librería</h1><p>Error consumiendo el servicio: " . $url . "</p>"));
+    die(errorPage("Examen2", "<h1>Examen2</h1><p>Error consumiendo el servicio: " . $url . "</p>"));
 }
 
 if(isset($obj->error)){
     session_destroy();
-    die(errorPage("Examen", "<h1>Librería</h1><p>" . $obj->error . "</p>"));
+    die(errorPage("Examen2", "<h1>Examen2</h1><p>" . $obj->error . "</p>"));
 }
 
 if(isset($obj-> no_auth)){
@@ -31,7 +31,7 @@ if(isset($obj->mensaje)){
     exit;
 }
 
-$datosUsuarioLog = $obj -> usuario; // SI HA PASADO TODO EL CÓDIGO ANTERIOR ES QUE NO ESTA BANEADO
+$datos_usuario_log = $obj -> usuario; // SI SE HA PASADO TODO ESTO ES QUE NO ESTA BANEADO
 if(time()-$_SESSION["ult_accion"] > MINUTOS*60){
     // Se me ha ido el tiempo
     session_unset();
@@ -40,7 +40,7 @@ if(time()-$_SESSION["ult_accion"] > MINUTOS*60){
     exit;
 }
 
-// No se ha terminado el tiempo y lo renovamos
+// No se ha terminado el tiempo y renovamos el tiempo
 $_SESSION["ult_accion"] = time();
 
 
