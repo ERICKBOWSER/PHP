@@ -17,8 +17,11 @@ echo "<h2>Su horario</h2>";
 echo "<p>Horario del Profesor: ";
 
 foreach($obj->usuarios as $user){
-  //  if($user->usuario == $_POST["usuario"]){
- //       echo $user->nombre;
-//    }
-echo $user->usuario;
+    echo $user->usuario;
+}
+
+foreach($obj->horario_lectivo as $horario){
+    echo $horario;
+    echo $horario-> $grupo;
+
 }

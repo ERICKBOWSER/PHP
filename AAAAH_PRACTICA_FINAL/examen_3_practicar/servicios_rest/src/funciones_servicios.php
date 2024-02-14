@@ -75,6 +75,40 @@ function login($usuario, $clave){
     return $respuesta;
 }
 
+function logueado($usuario, $clave){
+    try{
+        $conexion = new PDO("mysql:host=" . SERVIDOR_BD . ";dbname=" . NOMBRE_BD, USUARIO_BD, CLAVE_BD,
+            array(PDO::MYSQL_ATTR_INNIT_COMMAND=>"SET NAMES 'utf8'"));
+
+    }catch(PDOException $e){
+        $respuesta["error"] = "Imposible conectar en LOGUEADO:" . $e->getMessage();
+        return $respuesta;
+    }
+
+    try{
+        $consulta = "SELECT * FROM usuarios WHERE usuario=? AND clave=?";
+        $sentencia = $conexion->prepare($consulta);
+        $sentencia->execute([$lector, $clave]);
+
+    }catch(PDOException $e){
+        $respuesta["error"] = "Imposible realizar la consulta en LOGUEADO: " . $e->getMessage();
+        
+        $sentencia=null;
+        $conexion=null;
+        return $respuesta;
+    }
+
+    if($sentencia->rowCount()>0){
+        $respuesta["usuario"] = $sentencia->fetch(PDO::FETCH_ASSOC);
+    }else{
+        $respuesta["mensaje"] = "El usuario no se encuentra registrado en la BD - LOGUEADO";
+    }
+
+    $sentencia=null;
+    $conexion=null;
+    return $respuesta;
+}
+
 
 
 function obtener_horarios(){
@@ -88,7 +122,7 @@ function obtener_horarios(){
     }
 
     try{
-        $consulta = "SELECT * FROM usuarios";
+        $consulta = "SELECT * FROM horario_lectivo";
         $sentencia = $conexion->prepare($consulta);
         $sentencia->execute();
     }catch(PDOException $e){
