@@ -17,20 +17,4 @@ function conexion_pdo()
 }
 
 
-function conexion_mysqli()
-{
-  
-    try
-    {
-        $conexion=mysqli_connect(SERVIDOR_BD,USUARIO_BD,CLAVE_BD,NOMBRE_BD);
-        mysqli_set_charset($conexion,"utf8");
-        $respuesta["mensaje"]="Conexi&oacute;n a la BD realizada con &eacute;xito";
-        mysqli_close($conexion);
-    }
-    catch(Exception $e)
-    {
-        $respuesta["error"]="Imposible conectar:".$e->getMessage();
-    }
-    return $respuesta;
-}
 ?>

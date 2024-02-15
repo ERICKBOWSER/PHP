@@ -35,11 +35,6 @@
                 exit;
 
             }
-
-
-
-            // Siempre a no ser que no haya BD
-            header("Location: index.php");
         }
     }
 
@@ -92,38 +87,7 @@
         <p>
             <button name="btnEntrar">Entrar</button>
         </p>      
-    </form>    
-    <h2>Listado de libros</h2>
-    <?php 
-        $url = DIR_SERV. "/obtenerLibros";
-        $respuesta = consumir_servicios_REST($url, "GET"); // INDICAMOS LA URL Y PORQUE METODO LO VAMOS A USAR
-        $obj = json_decode($respuesta); // DEVUELVE UN STRING DE JSON EN UNA VARIABLE DE PHP
-        
-        // SI NO ES UN OBJETO
-        if(!$obj){
-            session_destroy();
-            die("<p>Error consumiendo el servicio: " . $url . "</p></body></html>");
-        }
-
-        // SI EL OBJETO OBTENIDO ES UN ERROR...
-        if(isset($obj->error)){
-            session_destroy();
-            die("<p>Error consumiendo el servicio: " . $url . "</p></body></html>");
-        }
-
-        echo "<div id='libros'>";
-
-        foreach($obj-> libros as $tupla){
-            echo "<div>";
-            echo "<img src='images/'" . $tupla -> portada . " alt='" . $tupla->titulo . "' title='" . 
-                $tupla-> titulo . "'/><br>" . $tupla -> titulo . " - " . $tupla->precio . "€";
-            echo "</div>";
-        }
-
-        echo "</div>";
-
-    ?>  
-    
+    </form>        
 
 </body>
 </html>
