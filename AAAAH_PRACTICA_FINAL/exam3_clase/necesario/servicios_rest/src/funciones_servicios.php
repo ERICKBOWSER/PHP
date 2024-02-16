@@ -51,7 +51,7 @@ function logueado($usuario, $clave){
         $sentencia->execute([$usuario, $clave]);
     }catch(PDOException $e){
         $respuesta["error"] = "Imposible realizar la consulta en LOGUEADO: " . $e->getMessage();
-        $sentenia=null;
+        $sentencia=null;
         $conexion=null;
         return $respuesta;
     }
