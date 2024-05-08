@@ -277,7 +277,7 @@ $sentencia=null;
         </p>
         <p>
             <label for="clave">Contraseña: </label><br>
-            <input type="password" id="clave" name="clave" placeholder="Contraseña...">
+            <input type="password" id="clave" name="clave" placeholder="Teclee nueva contraseña...">
             <?php
             if(isset($_POST["btnContNuevo"])&& $error_clave)
                 echo "<span class='error'> Campo vacío</span>";
