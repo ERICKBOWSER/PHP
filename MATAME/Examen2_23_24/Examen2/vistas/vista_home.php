@@ -1,4 +1,43 @@
+<?php
+if(isset($_POST["btnLogin"])){
+    $error_usuario=$_POST["usuario"]=="";
+    $error_clave=$_POST["clave"]=="";
+    $error_form=$error_usuario || $error_clave;
 
+    if(!$error_form){
+        $url=DIR_SERV."/login";
+        $datos["usuario"]=$_POST["usuario"];
+        $datos["clave"]=md5($_POST["clave"]);
+        $respuesta=consumir_servicios_REST($url, "POST", $datos);
+        $json=json_decode($respuesta, true);
+        if(!$json){
+            session_destroy();
+            die(error_page("Examen2_SW", "<h1>Horario de los profesores</h1><p>Error consumiendo el servicio desde btnLogin. Error: ".$url."</p>"));
+        }
+
+        if(isset($json["error"])){
+            session_destroy();
+            die(error_page("Examen2_SW", "<h1>Horario de los profesores</h1><p>".$json->getMessage()."</p>"));
+        }
+
+        if(isset($json["mensaje"])){
+            $error_usuario=true;
+        }else{
+            // CREAMOS LAS SESIÓN CON SUS RESPECTIVOS DATOS
+            $_SESSION["usuario"]=$json["usuario"]["usuario"];
+            $_SESSION["clave"]=$json["usuario"]["clave"];
+            $_SESSION["ult_accion"]=time();
+            $_SESSION["api_session"]=$json["api_session"];
+
+            // UNA VEZ LOGUEADO VUELVE A INDEX DONDE SE VERÁ QUE $_SESSION["usuario"] YA EXISTE Y NOS REDIRECCIONARA A vistas_profesor.php
+            header("Location:index.php");
+        }
+    }
+}
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">

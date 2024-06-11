@@ -7,13 +7,13 @@ if(!$json){
     $die(error_page("Examen2_SW", "<h1>Horario de los profesores</h1><p>Sin respuesta oportuna de la API desde seguridad</p>"));
 }
 
-if($json["error"]){
+if(isset($json["error"])){
     session_destroy();
     consumir_servicios_REST(DIR_SERV."/salir", "POST", $datos_env);
-    die(error_page("Examen 2", "<h1>Horario de los profesores</h1><p>SEGURIDAD: ".$json->getMessage()."</p>"));
+    die(error_page("Examen 2", "<h1>Horario de los profesores</h1><p>SEGURIDAD: ".$json["error"]."</p>"));
 }
 
-if($json["no_auth"]){
+if(isset($json["no_auth"])){
     session_unset();
     $_SESSION["seguridad"]="Usted ha dejado de tener acceso a la API. Por favor vuelva a loguearse desde SEGURIDAD";
     header("Location:".$salto);
