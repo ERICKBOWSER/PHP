@@ -60,7 +60,7 @@ $app->get("/obtenerHorarioDiaHora/{id_usuario}",function($request){
         $datos[]=$request->getAttribute("id_usuario");
         $datos[]=$request->getParam("dia");
         $datos[]=$request->getParam("hora");
-        echo json_encode(obtener_horario_no_dia_hora($datos));
+        echo json_encode(obtener_horario_dia_hora($datos));
 });
 
 $app->get("/obtenerHorarioNoDiaHora/{id_usuario}",function($request){
@@ -69,7 +69,7 @@ $app->get("/obtenerHorarioNoDiaHora/{id_usuario}",function($request){
         $datos[]=$request->getAttribute("id_usuario");
         $datos[]=$request->getParam("dia");
         $datos[]=$request->getParam("hora");
-        echo json_encode(obtener_horario_dia_hora($datos));
+        echo json_encode(obtener_horario_no_dia_hora($datos));
 });
 
 $app->post("/insertarGrupo", function($request){
@@ -87,7 +87,7 @@ $app->post("/insertarGrupo", function($request){
 $app->delete("/borrarGrupo/{id_horario}", function($request){
     session_id($request->getParam("api_session"));
     session_start();
-        echo json_encode(borrar_grupo($request-getAttribute("id_horario")));
+        echo json_encode(borrar_grupo($request->getAttribute("id_horario")));
 });
 
 

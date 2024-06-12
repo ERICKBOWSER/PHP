@@ -330,7 +330,9 @@ if(isset($_POST["btnQuitar"]))
             <form action="index.php" method="post">
                 <p>
                 <?php
-                    echo "<input type='hidden' name='profesor' value='".$_POST["profesor"]."'><input type='hidden' name='dia' value='".$_POST["dia"]."'><input type='hidden' name='hora' value='".$_POST["hora"]."'>";
+                    echo "<input type='hidden' name='profesor' value='".$_POST["profesor"]."'>
+                        <input type='hidden' name='dia' value='".$_POST["dia"]."'>
+                        <input type='hidden' name='hora' value='".$_POST["hora"]."'>";
                     echo '<select name="grupo">';
                         foreach($obj4->horario as $tupla)
                         {

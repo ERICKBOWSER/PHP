@@ -21,7 +21,7 @@ if(isset($_POST["btnLogin"]))
         if(isset($obj["error"]))
         {
             session_destroy();
-            die(error_page("Examen4 DWESE Curso 23-24","<h1>Notas de los alumnos</h1><p>".$obj->error."</p>"));
+            die(error_page("Examen4 DWESE Curso 23-24","<h1>Notas de los alumnos</h1><p>".$obj["error"]."</p>"));
         }
 
         if(isset($obj["mensaje"]))

@@ -7,7 +7,7 @@ if(isset($_POST["btnInsertar"])){
     $datos["hora"]=$_POST["hora"];
     $datos["grupo"]=$_POST["grupo"];
 
-    $respuesta=consumir_servicios_REST($url, "POST", $datos_env);
+    $respuesta=consumir_servicios_REST($url, "POST", $datos);
     $jsonInsert=json_decode($respuesta, true);
     if(!$jsonInsert){
         session_destroy();
@@ -311,7 +311,7 @@ if(isset($_POST["dia"])){
                 echo "<input type='hidden' name='profesor' value='".$_POST["profesor"]."'>
                     <input type='hidden' name='dia' value='".$_POST["dia"]."'>
                     <input type='hidden' name='hora' value='".$_POST["hora"]."'>";
-                echo "<button class='enlace' name='btnQuitar' value='".$tupla["id_horario"]."'>Quitar</button>";
+                echo "<button type='submit' class='enlace' name='btnQuitar' value='".$tupla["id_horario"]."'>Quitar</button>";
                 echo "</form></td>";
                 echo "</tr>";
             }
