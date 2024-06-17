@@ -21,6 +21,6 @@ function error_page($title,$body)
 }
 
 
-define("DIR_SERV","http://localhost/Proyectos/Curso23_24/Examen2_23_24_SW/servicios_rest");
+define("DIR_SERV","http://localhost/PHP/MATAME/profesor/Examen2_23_24_SW_SOLUCION/servicios_rest");
 define("MINUTOS",5);
 ?>

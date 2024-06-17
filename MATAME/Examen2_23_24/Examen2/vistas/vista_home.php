@@ -17,7 +17,7 @@ if(isset($_POST["btnLogin"])){
 
         if(isset($json["error"])){
             session_destroy();
-            die(error_page("Examen2_SW", "<h1>Horario de los profesores</h1><p>".$json->getMessage()."</p>"));
+            die(error_page("Examen2_SW", "<h1>Horario de los profesores</h1><p>".$json["error"]."</p>"));
         }
 
         if(isset($json["mensaje"])){
